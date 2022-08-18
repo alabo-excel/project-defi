@@ -14,7 +14,7 @@
         <button class="p-4 w-52 my-6 bg-[#00E3A5] text-black font-bold">Join Now</button>
       </div>
       <div class="lg:w-1/2">
-        <img src="../assets/[CITYPNG 2.png" alt="" />
+        <img src="../assets/[CITYPNG2.png" alt="" />
       </div>
     </div>
   </div>
