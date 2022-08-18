@@ -5,16 +5,19 @@ import Home from "./views/home.vue";
 import { reactive, onMounted, ref, onUnmounted } from "vue";
 import Moralis from "moralis";
 import { useWeb3Transfer } from "moralis";
+
 const loggedin = ref(false);
 const userEth = ref("");
 const amount = ref("");
 const receiver = ref("");
 const loading = ref(false);
+
 onMounted(() => {
   const serverUrl = "https://jpvntlbqfubt.usemoralis.com:2053/server";
   const appId = "ucTdILjwimEpaUWGncOw7SSLq3JE4pyXxQgvl1R1";
   Moralis.start({ serverUrl, appId });
 });
+
 const TransferEth = async () => {
   loading.value = true;
   const options = {
@@ -31,6 +34,7 @@ const TransferEth = async () => {
   loading.value = false;
 };
 const state = reactive({ userAuth: "" });
+
 const login = async () => {
   let user = Moralis.User.current();
   if (!user) {
