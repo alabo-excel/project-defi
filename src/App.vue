@@ -25,10 +25,11 @@ const TransferEth = async () => {
     amount: Moralis.Units.ETH(amount.value),
     receiver: receiver.value,
   };
-  await Moralis.transfer(options);
+  // await Moralis.transfer(options);
   const transaction = await Moralis.transfer(options);
   const result = await transaction.wait();
-  console.log(result);
+  // console.log(result);
+  alert("ETH sent successfully")
   amount.value = "";
   receiver.value = "";
   loading.value = false;
@@ -36,14 +37,15 @@ const TransferEth = async () => {
 const state = reactive({ userAuth: "" });
 
 const login = async () => {
+  console.log("hello")
   let user = Moralis.User.current();
   if (!user) {
     user = await Moralis.authenticate({
       signingMessage: "Welcome to Alabo Excel DEFI",
     })
       .then((user) => {
-        console.log("logged in user:", user);
-        console.log(user.get("ethAddress"));
+        // console.log("logged in user:", user);
+        // console.log(user.get("ethAddress"));
         state.userAuth = user.get("ethAddress");
         userEth.value = user.get("ethAddress");
         loggedin.value = true;
@@ -84,7 +86,7 @@ onUnmounted(() => {
       <div v-else>
         <button
           class="border border-[#00E3A5] lg:p-4 p-2 lg:w-44 w-32"
-          @click="login"
+          @click="login()"
         >
           Connect
         </button>
@@ -110,7 +112,7 @@ onUnmounted(() => {
       <div>
         <button
           class="w-32 bg-green-900 text-white p-3 rounded-md"
-          @click="TransferEth"
+          @click="TransferEth()"
         >
           {{loading ? "Processing..." : "Send"}}
         </button>
