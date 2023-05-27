@@ -3,8 +3,8 @@ import Footer from "./components/Footer.vue";
 import Home from "./views/home.vue";
 
 import { reactive, onMounted, ref, onUnmounted } from "vue";
-import Moralis from "moralis";
-import { useWeb3Transfer } from "moralis";
+// import Moralis from "moralis";
+// import { useWeb3Transfer } from "moralis";
 
 const loggedin = ref(false);
 const userEth = ref("");
@@ -18,48 +18,48 @@ const loading = ref(false);
 //   Moralis.start({ serverUrl, appId });
 // });
 
-const TransferEth = async () => {
-  loading.value = true;
-  const options = {
-    type: "native",
-    amount: Moralis.Units.ETH(amount.value),
-    receiver: receiver.value,
-  };
-  // await Moralis.transfer(options);
-  const transaction = await Moralis.transfer(options);
-  const result = await transaction.wait();
-  // console.log(result);
-  alert("ETH sent successfully")
-  amount.value = "";
-  receiver.value = "";
-  loading.value = false;
-};
-const state = reactive({ userAuth: "" });
+// const TransferEth = async () => {
+//   loading.value = true;
+//   const options = {
+//     type: "native",
+//     amount: Moralis.Units.ETH(amount.value),
+//     receiver: receiver.value,
+//   };
+//   // await Moralis.transfer(options);
+//   const transaction = await Moralis.transfer(options);
+//   const result = await transaction.wait();
+//   // console.log(result);
+//   alert("ETH sent successfully")
+//   amount.value = "";
+//   receiver.value = "";
+//   loading.value = false;
+// };
+// const state = reactive({ userAuth: "" });
 
-const login = async () => {
-  console.log("hello")
-  let user = Moralis.User.current();
-  if (!user) {
-    user = await Moralis.authenticate({
-      signingMessage: "Welcome to Alabo Excel DEFI",
-    })
-      .then((user) => {
-        // console.log("logged in user:", user);
-        // console.log(user.get("ethAddress"));
-        state.userAuth = user.get("ethAddress");
-        userEth.value = user.get("ethAddress");
-        loggedin.value = true;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-};
-onUnmounted(() => {
-  Moralis.User.logOut();
-  state.userAuth = "";
-  // localStorage.clear();
-});
+// const login = async () => {
+//   console.log("hello")
+//   let user = Moralis.User.current();
+//   if (!user) {
+//     user = await Moralis.authenticate({
+//       signingMessage: "Welcome to Alabo Excel DEFI",
+//     })
+//       .then((user) => {
+//         // console.log("logged in user:", user);
+//         // console.log(user.get("ethAddress"));
+//         state.userAuth = user.get("ethAddress");
+//         userEth.value = user.get("ethAddress");
+//         loggedin.value = true;
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }
+// };
+// onUnmounted(() => {
+//   Moralis.User.logOut();
+//   state.userAuth = "";
+//   // localStorage.clear();
+// });
 </script>
 
 <template>
