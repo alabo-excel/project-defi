@@ -12,11 +12,11 @@ const amount = ref("");
 const receiver = ref("");
 const loading = ref(false);
 
-onMounted(() => {
-  const serverUrl = "https://jpvntlbqfubt.usemoralis.com:2053/server";
-  const appId = "ucTdILjwimEpaUWGncOw7SSLq3JE4pyXxQgvl1R1";
-  Moralis.start({ serverUrl, appId });
-});
+// onMounted(() => {
+//   const serverUrl = "https://jpvntlbqfubt.usemoralis.com:2053/server";
+//   const appId = "ucTdILjwimEpaUWGncOw7SSLq3JE4pyXxQgvl1R1";
+//   Moralis.start({ serverUrl, appId });
+// });
 
 const TransferEth = async () => {
   loading.value = true;
